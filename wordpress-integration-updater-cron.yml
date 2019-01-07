@@ -1,0 +1,22 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: wordpress-integration-updater
+spec:
+  schedule: "24 */3 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: wordpress-integration-updater
+            image: nateinaction/wordpress-integration-updater
+            volumeMounts:
+            - name: "secrets"
+              mountPath: "/secrets"
+              readOnly: true
+          volumes:
+          - name: secrets
+            secret:
+              secretName: github-app-key-pem
+          restartPolicy: OnFailure
