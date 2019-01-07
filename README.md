@@ -13,3 +13,4 @@ kubectl apply -f .
 - [nateinaction/wordpress-integration-updater](https://github.com/nateinaction/wordpress-integration-updater)
     - Status: `kubectl get cronjob wordpress-integration-updater`
     - Logs: 
+    - Secret Status: `kubectl describe secret github-app-key-pem`

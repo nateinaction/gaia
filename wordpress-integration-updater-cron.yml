@@ -4,6 +4,7 @@ metadata:
   name: wordpress-integration-updater
 spec:
   schedule: "24 */3 * * *"
+  concurrencyPolicy: Replace
   jobTemplate:
     spec:
       template:
