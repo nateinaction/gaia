@@ -1,7 +1,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: wordpress-integration-updater
+  name: wordpress-integration-update-develop
 spec:
   schedule: "24 */3 * * *"
   concurrencyPolicy: Replace
@@ -10,8 +10,10 @@ spec:
       template:
         spec:
           containers:
-          - name: wordpress-integration-updater
-            image: nateinaction/wordpress-integration-updater
+          - name: wordpress-integration-update-develop
+            image: worldpeaceio/wordpress-integration-services
+            command: ["python"]
+            args: ["/update_develop/main.py"]
             volumeMounts:
             - name: "secrets"
               mountPath: "/secrets"
